@@ -1,0 +1,37 @@
+class Solution {
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        
+        List<Integer> current = new ArrayList<>();
+
+        List<List<Integer>> result = new ArrayList<>();
+
+
+        Arrays.sort(candidates);
+
+        combine(candidates , target, 0 , current , result);
+
+        return result;
+
+    }
+
+    private void combine(int[] c , int t , int start, List<Integer> current , List<List<Integer>> result ){
+
+
+        if(t==0){
+            result.add(new ArrayList<>(current));
+        }
+
+        for(int i = start ; i<c.length;i++){
+
+            if(c[i]>t){
+                break;
+            }
+            current.add(c[i]);
+
+            combine(c,t-c[i],i,current,result);
+
+            current.remove(current.size()-1);
+
+        }
+    }
+}
