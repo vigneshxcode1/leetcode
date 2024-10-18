@@ -1,0 +1,37 @@
+class Solution {
+
+   private int max = 0;
+   private int count = 0;
+
+
+    public int countMaxOrSubsets(int[] nums) {
+
+        subset(nums, 0, 0);
+        return count;
+    }  
+    
+  
+    private void subset(int[] nums, int curr, int or) {
+
+        if (curr == nums.length) {
+            if (or == max) {
+                count++;
+            } else if (or > max) {
+               
+                 max = or;
+                 count = 1;
+            }
+       return;
+        }
+
+        // include subset
+       subset(nums, curr + 1, or | nums[curr]);
+
+        // exculde subset
+
+        subset(nums, curr + 1, or);
+
+      
+
+    }
+}
